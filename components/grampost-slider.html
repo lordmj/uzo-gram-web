@@ -1,0 +1,29 @@
+<zp:graphobject id="${param.objectid}">
+
+    <zui:slider>
+        <zp:traversaldescription reltypes="SHARED_LINK, CONTAINER" objecttypes="IMAGE, VIDEO" direction="in" maxlength="1"
+            startobjects="${param.id}">
+            <zp:traversal get="objects" startindex="0" endindex="1">
+                <zp:graphobject>
+                    <zui:slider-item>
+                        <zp:graphobject isoftype="IMAGE">
+                            <zp:image>
+                                <zp:image get="id" var="imgid" />
+                                <zp:image get="src" maxwidth="500" maxheight="500" var="imgname" />
+                                <img class="zeusportal-grid-item-mainphoto" src="${imgname}"></zp:image>
+                        </zp:graphobject>
+                        <zp:graphobject isoftype="VIDEO">
+                            <zp:video>
+                                <div class="responsive-video">
+                                    <zp:videoplayer />
+                                </div>
+                            </zp:video>
+                        </zp:graphobject>
+                    </zui:sider-item>
+                </zp:graphobject>
+            </zp:traversal>
+        </zp:traversaldescription>
+    </zui:slider>
+
+
+</zp:graphobject>

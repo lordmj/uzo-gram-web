@@ -1,0 +1,29 @@
+
+<zp:graphobject id="${param.objectid}">
+
+    <zui:tabs id="uzo-gram-profile-tabs">
+        <zui:tab>
+            <zui:tab-title>Posts</zui:tab-title>
+            <zui:tab-body>
+                <zui:zpml src="posts.html" startindex="0" count="24" />
+            </zui:tab-body>
+        </zui:tab>
+        <zui:tab>
+            <zui:tab-title>Tagged</zui:tab-title>
+            <zui:tab-body>
+                <zui:zpml src="tagged-posts.html" startindex="0" count="24" />
+            </zui:tab-body>
+        </zui:tab>
+        <%-- Only show TV posts if the user has made TV posts --%>
+        <zp:traversaldescription reltypes="${reltype}" objecttypes="VIDEO" maxlength="1" direction="in">
+            <zp:traversal startindex="0" endindex="1" get="objects" ifnotempty="true">
+                <zui:tab>
+                    <zui:tab-title>TV</zui:tab-title>
+                    <zui:tab-body>
+                        <zui:zpml src="tv-posts.html" startindex="0" count="24" />
+                    </zui:tab-body>
+                </zui:tab>
+            </zp:traversal>
+        </zp:traversaldescription>
+    </zui:tabs>
+</zp:graphobject>

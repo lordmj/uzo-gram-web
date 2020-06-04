@@ -1,0 +1,28 @@
+<%-- Renders the Newsfeed on homescreen for UZO gram --%>
+
+<zp:user>
+
+    <ul id="uzo-gram-newsfeed">
+    <%-- Obtain posts by users or pages the user follows --%>
+    <zp:traversaldescription reltypes="FOLLOWING" objecttypes="USER, PAGE">
+        <zp:traversal get="objects" var="following" />
+        <zp:traversaldescription reltypes="CONTAINER" direction="in" startobjects="${following}" objecttypes="UZO-GRAM-POST">
+            <zp:traversal startindex="${param.startindex}" endindex="${param.startindex + param.count}" get="objects">
+                <li class="uzo-gram-newsfeed-item">
+                    <c:set var="hasmoreitems" value="true" /> 
+                    <zp:graphobject get="id" var="postid" />
+                    <zui:zpml src="grampost.html" objectid="${postid}" />    
+                </li>
+            </zp:traversal>
+        </zp:traversaldescription>
+    </zp:traversaldescription>
+    </ul>
+
+
+    <%-- Autoscroll to find new posts --%>
+    <c:if test="${hasmoreitems == true}">
+        <zui:autoscroll appendto="uzo-gram-newsfeed" startindex="${param.startindex + param.count}" count="${param.count}" reltype="${reltype}">
+            <zui:zpml src="newsfeed.html" startindex="${param.startindex + param.count}" count="${param.count}" reltype="${reltype}" />
+        </zui:autoscroll>
+    </c:if>
+</zp:user>

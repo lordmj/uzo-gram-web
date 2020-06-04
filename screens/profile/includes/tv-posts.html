@@ -1,0 +1,32 @@
+<c:choose>
+    <c:when test="${param.reltype == null}">
+        <c:set var="reltype" value="CONTAINER" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="reltype" value="${param.reltype}" />
+    </c:otherwise>
+</c:choose>
+
+<zp:graphobject id="${param.objectid}">
+    <ul class="row" id="uzo-gram-tv-posts">
+    <%-- Traverse to find posts --%>
+    <zp:traversaldescription reltypes="${reltype}" objecttypes="VIDEO" maxlength="1" direction="in">
+        <zp:traversal get="count" var="objcount" />
+        <zp:traversal get="objects" startindex="${param.startindex}" endindex="${param.startindex + param.count}">
+            <c:set var="hasmoreitems" value="true" /> 
+            <li class="col s12 m6 l4 zeusportal-grid-item">
+                <zp:graphobject>
+                    <zui:objectcard />
+                </zp:graphobject>
+            </li>        
+        </zp:traversal>
+    </zp:traversaldescription>
+    </ul>
+
+    <%-- Autoscroll to find new posts --%>
+    <c:if test="${hasmoreitems == true}">
+        <zui:autoscroll appendto="uzo-gram-tv-posts" startindex="${param.startindex + param.count}" count="${param.count}" reltype="${reltype}">
+            <zui:zpml src="tv-posts.html" startindex="${param.startindex + param.count}" count="${param.count}" reltype="${reltype}" />
+        </zui:autoscroll>
+    </c:if>
+</zp:graphobject>

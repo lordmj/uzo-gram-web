@@ -1,0 +1,25 @@
+
+<zp:user id="${param.id}">
+
+    <div class="container">
+
+
+        <%-- Header --%>
+
+        <zp:image ifnotnull="true">
+            <!-- Get the User Profile Picture -->
+            <zp:image get="src" var="imgsrc" maxwidth="200" maxheight="200" />
+            <c:if test="${imgsrc != null}">
+                <img src="${imgsrc}" class="circle responsive-img" width="200" height="200" /> 
+            </c:if>
+        </zp:image>        
+
+
+        <%-- Body --%>
+        <%-- Include the tabs portion --%>
+        <zui:zpml src="includes/tabs.html" objectid="${param.id}" />
+
+
+    </div>
+
+</zp:user>

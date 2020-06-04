@@ -1,0 +1,54 @@
+<c:choose>
+    <c:when test="${param.reltype == null}">
+        <c:set var="reltype" value="CONTAINER" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="reltype" value="${param.reltype}" />
+    </c:otherwise>
+</c:choose>
+
+<zp:graphobject id="${param.objectid}">
+    <ul class="row">
+    <%-- Traverse to find posts --%>
+    <zp:traversaldescription reltypes="${reltype}" objecttypes="UZO-GRAM-POST" maxlength="1" direction="in">
+        <zp:traversal get="count" var="objcount" />
+        <zp:traversal get="objects" startindex="${param.startindex}" endindex="${param.startindex + param.count}">
+            <c:set var="hasmoreitems" value="true" /> 
+            <li class="col s12 m6 l4 zeusportal-grid-item">
+                <zp:graphobject>
+                    <%-- Obtain the image or video of the post --%>
+                    <zp:traversaldescription reltypes="CONTAINER" objecttypes="IMAGE, VIDEO">
+                        <zp:traversal get="objects" startindex="0" endindex="1">
+                            <zp:graphobject>
+                                <zp:graphobject isoftype="IMAGE">
+                                    <zp:image>
+                                        <zp:image get="id" var="imgid" />
+                                        <zp:image get="src" maxwidth="500" maxheight="500" var="imgname" />
+                                        <img class="responsive-img" src="${imgname}">                                        
+                                    </zp:image>
+                                    <%-- TODO Add Comment, like count overlay --%>
+                                </zp:graphobject>
+                                <zp:graphobject isoftype="VIDEO">
+                                    <zp:image>
+                                        <zp:image get="id" var="imgid" />
+                                        <zp:image get="src" maxwidth="500" maxheight="500" var="imgname" />
+                                        <img class="responsive-img" src="${imgname}">                                        
+                                    </zp:image>
+                                    <%-- TODO Add Comment, like count, Video play overlay --%>
+                                </zp:graphobject>
+                            </zp:graphobject>
+                        </zp:traversal>
+                    </zp:traversaldescription>
+                </zp:graphobject>
+            </li>        
+        </zp:traversal>
+    </zp:traversaldescription>
+    </ul>
+
+    <%-- Autoscroll to find new posts --%>
+    <c:if test="${hasmoreitems == true}">
+        <zui:autoscroll startindex="${param.startindex + param.count}" count="${param.count}" reltype="${reltype}">
+            <zui:zpml src="posts.html" startindex="${param.startindex + param.count}" count="${param.count}" reltype="${reltype}" />
+        </zui:autoscroll>
+    </c:if>
+</zp:graphobject>

@@ -1,0 +1,93 @@
+<zp:graphobject id="${param.objectid}">
+
+    <zui:widget mini="true" name="" href="" headerclass="zeusportal-link-status-update" id="gram-${param.objectid}">
+        <div style="width: 100%">
+            <zui:cache id="postcreator-${param.id}" time="7200">
+                <div style="display: inline-block">
+                    <zp:user>
+                        <zp:user get="id" var="creatorid" />
+                        <portal:cache id="statusupdatecreator-${creatorid }" time="7200">
+                            <portal:memberphoto width="200" height="150"
+                                cssclass="zeusportal-profile-image zeusportal-profile-image-tiny" />
+                            <portal:memberlink showtooltip="true" cssclass="zeusportal-status-update-profile-link" />
+                        </portal:cache>
+                    </zp:user>
+                    <p class="zeusportal-description">
+                        <zp:graphobject get="creationdate" />
+                    </p>
+                </div>
+            </zui:cache>
+        </div>
+
+        <div class="valign-wrapper right">
+
+            <zp:graphobject authorized="EDIT_GRAPH_OBJECT" var="authorized" />
+
+            <c:if test="${authorized }">
+
+                <c:set var="dropdowntext"><i class="material-icons right" data-mui-toggle="dropdown">more_vert</i>
+                </c:set>
+
+
+                <c:set var="postabout"
+                    value="<%=factory.getGraphManager().getDefaultRelationshipTypes().getPostAbout().getID() %>" />
+
+                <zui:dropdown id="update-dropdown-${param.id}" text="${dropdowntext }">
+
+
+
+                    <zui:dropdown-item>
+                        <a role="dialog"
+                            href="${pageContext.servletContext.contextPath}/jspincludes/dialogs/editupdate.jsp?id=${param.id}">Edit
+                            Post</a>
+
+                    </zui:dropdown-item>
+
+                    <zui:dropdown-item>
+                        <a role="dialog"
+                            href="${pageContext.servletContext.contextPath}/graph/dialogs/editlocations.jsp?objectid=${param.objectid}">Manage
+                            Locations</a>
+                    </zui:dropdown-item>
+
+                    <zui:dropdown-item>
+
+                        <a role="dialog"
+                            href="${pageContext.servletContext.contextPath}/graph/dialogs/createrelationship.jsp?objectid=${param.id }&typeid=${postabout }">Manage
+                            Topics</a>
+
+                    </zui:dropdown-item>
+
+                    <zui:dropdown-item>
+
+                        <a role="dialog"
+                            href="${pageContext.servletContext.contextPath}/graph/dialogs/usertags.jsp?objectid=${param.id }">Tag
+                            People and Entities</a>
+
+                    </zui:dropdown-item>
+
+                    <zui:dropdown-item>
+
+                        <a role="dialog"
+                            href="${pageContext.servletContext.contextPath}/jspincludes/dialogs/deleteupdate.jsp?id=${param.id}">Delete</a>
+
+                    </zui:dropdown-item>
+
+
+                </zui:dropdown>
+
+        </div>
+
+        <a class="right" href="${pageContext.servletContext.contextPath}/posts/${param.id}"> <i
+                class="material-icons tiny">launch</i> </a>
+
+        </c:if>
+
+        <!-- Handle Attached Images -->
+        <zui:zpml src="grampost-slider.html" />
+
+    </zui:widget>
+
+
+
+
+</zp:graphobject>

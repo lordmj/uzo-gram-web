@@ -1,0 +1,112 @@
+.side-nav {
+	
+	width: 240px;
+	
+}
+
+#header .header-search-wrapper {
+	
+	margin: 10px auto 0 260px !important;
+	
+}
+
+#messages-dropdown h5 {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+#messages-dropdown li {
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+#messages-dropdown li > a {
+  padding: 0;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+#messages-dropdown li > a > span {
+  display: inline-block;
+  font-size: 1.2rem;
+  position: relative;
+  top: 4px;
+  margin-right: 5px;
+}
+
+#messages-dropdown li > time {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-left: 38px;
+}
+
+#messages-dropdown li.divider {
+  padding: 0;
+}
+
+.sidebar-collapse {
+	/* top: -35px; */
+}
+
+header .brand-logo {
+	
+	left: 35px;
+	
+}
+
+#content {
+	display: none;
+}
+
+
+#main.sidebar-hidden {
+	padding-left: 0px;
+}
+
+@media only screen and (max-width: 992px) {
+	.sidebarContentPresent #zeusportal-body-sidebar-layout {
+		padding-top: 230px;
+	}
+}
+
+
+@media only screen and (min-width: 993px) {
+	#preneurhub-sidebar-content .zeusportal-body-sidebar {
+		width: 350px;
+	}
+	
+	.sidebarContentPresent {
+		padding-left: 365px !important;
+	}
+
+	.zeusportal-secondary-header .appbar {
+
+		padding-left: 260px;
+
+	}
+
+}
+
+#nexus-header-content-area-inner, #zeusportal-body-layout-sl, #zeusportal-body-layout-ls, #zeusportal-body-layout-ll, #zeusportal-body-layout-sss, .zeusportal-body-layout-l, #zeusportal-body-layout-grid, .zeusportal-tab-bar, .zeusportal-content-results, #zeusportal-content-results {
+
+	max-width: initial !important;
+
+}
+
+#main {
+	flex: 1 0 auto;
+}
+
+/**
+#chat-out {
+	display: none;
+} **/
+
+/**
+#preneurhub-nav {
+	
+	background-color: initial;
+	box-shadow: initial;
+	
+} **/
