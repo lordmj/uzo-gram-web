@@ -2,7 +2,12 @@
 
 	background: #FFFFFF;
 	color: #000000;
+	
 
+}
+
+app-bar a {
+	color: #000000;
 }
 
 .side-nav {
