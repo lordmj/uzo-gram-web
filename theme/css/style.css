@@ -1,12 +1,12 @@
 .app-bar {
 
-	background: #FFFFFF;
+	background-color: #FFFFFF;
 	color: #000000;
 	
 
 }
 
-app-bar a {
+.app-bar a {
 	color: #000000;
 }
 
